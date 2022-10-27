@@ -14,15 +14,15 @@ def predict(request):
         data_to_predict = preprocess(df=data)
     except:
         return Response(
-            "reservation_status_date not valid. Only valid with year between 2015 to 2017.",
+            "reservation_status_date not valid. Only valid with year between 2014 to 2017.",
             status=400
             )
 
-    if not (os.path.isfile('/app/model/data/catboost')):
-        return Response('There is no model to perform prediction.', status=400)
+    if not (os.path.isfile('/app/model/catboost')):
+        return Response('There is no model to perform prediction on.', status=400)
 
     model = CatBoostClassifier()
-    model.load_model('/app/model/data/model')
+    model.load_model('/app/model/catboost')
 
     prediction = model.predict(data_to_predict)
 

@@ -23,7 +23,7 @@ def fit():
         X_train, X_test, y_train, y_test = preprocess(training=True)
     except:
         return Response(
-            "reservation_status_date not valid. Only valid with year between 2015 to 2017.",
+            "reservation_status_date not valid. Only valid with year between 2014 to 2017.",
             status=400
             )
 
@@ -52,6 +52,6 @@ def fit():
         mlflow.log_metric("f1_score", f1)
         mlflow.log_metric("area_under_roc_curve", auc)
 
-    cat.save_model('/app/model/data/catboost')
+    cat.save_model('/app/model/catboost')
 
     return Response("Model trained successfully!", status=200)

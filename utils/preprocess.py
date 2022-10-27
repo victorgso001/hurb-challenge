@@ -7,7 +7,7 @@ from flask import Response
 
 def preprocess(df=None, training=False):
     if training:
-        df = pd.read_csv('/app/model/data/hotel_bookings.csv')
+        df = pd.read_csv('/app/model/hotel_bookings.csv')
 
     to_drop = ['days_in_waiting_list', 'arrival_date_year','assigned_room_type',
                'booking_changes', 'reservation_status', 'country', 'arrival_date_month'
@@ -33,11 +33,7 @@ def preprocess(df=None, training=False):
     cat_df['deposit_type'] = cat_df['deposit_type'].map({'No Deposit': 0, 'Refundable': 1, 'Non Refund': 3})
     cat_df['customer_type'] = cat_df['customer_type'].map({'Transient': 0, 'Contract': 1, 'Transient-Party': 2, 'Group': 3})
 
-    print(cat_df['year'], flush=True)
-    print((cat_df['year'] < 2015).any(), flush=True)
-    print((cat_df['year'] > 2017).any(), flush=True)
-
-    if (((cat_df['year'] < 2015).any()) or ((cat_df['year'] > 2017).any())):
+    if (((cat_df['year'] < 2014).any()) or ((cat_df['year'] > 2017).any())):
         raise Exception
     cat_df['year'] = cat_df['year'].map({2015: 0, 2014: 1, 2016: 2, 2017: 3})
 
