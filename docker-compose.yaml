@@ -5,6 +5,14 @@ services:
         build: .
         image: hurbapp:latest
         ports:
+          - 6000:6000
+        volumes:
+          - '.:/app'
+        command: "python3 app.py"
+    mlflow:
+        image: hurbapp:latest
+        ports:
           - 5000:5000
         volumes:
           - '.:/app'
+        command: "mlflow ui --host 0.0.0.0"
