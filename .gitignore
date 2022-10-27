@@ -1,5 +1,4 @@
 catboost_info
 mlruns
-utils/__pycache__
-model/*
-controllers/__pycache__
+model/
+__pycache__/
