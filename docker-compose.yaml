@@ -6,3 +6,5 @@ services:
         image: hurbapp:latest
         ports:
           - 5000:5000
+        volumes:
+          - '.:/app'
