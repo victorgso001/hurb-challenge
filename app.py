@@ -1,14 +1,14 @@
-from flask import Flask, Response
+from flask import Flask, Response, request
 
-from catboost import CatBoostClassifier
+
 from model.fit import fit
-import os
+from model.predict import predict
 
 app = Flask(__name__)
 
 @app.route('/')
 def test():
-    return Response("First API test page", status=200)
+    return Response("Hurb Technical Challenge API", status=200)
 
 @app.route('/model/fit')
 def fit_model():
@@ -16,10 +16,7 @@ def fit_model():
 
 @app.route('/model/predict')
 def predict_model():
-        # if (os.path.isfile('/app/model/data/model')):
-        # model = CatBoostClassifier()
-        # model.load('/app/model/data/model')
-        # TODO: Prediction route
+    return predict(request)
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000, host='0.0.0.0')
