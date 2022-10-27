@@ -2,18 +2,18 @@ import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn import preprocessing
+from flask import Response
 
 
 def preprocess(df=None, training=False):
     if training:
         df = pd.read_csv('/app/model/data/hotel_bookings.csv')
 
-        to_drop = ['days_in_waiting_list', 'arrival_date_year',
-                   'arrival_date_year', 'assigned_room_type', 'booking_changes',
-                   'reservation_status', 'country', 'arrival_date_month'
-                  ]
-        
-        df.drop(to_drop, axis=1, inplace=True)
+    to_drop = ['days_in_waiting_list', 'arrival_date_year','assigned_room_type',
+               'booking_changes', 'reservation_status', 'country', 'arrival_date_month'
+                ]
+
+    df.drop(to_drop, axis=1, inplace=True)
 
     cat_cols = [col for col in df.columns if df[col].dtype == 'O']
     cat_df = df[cat_cols].copy()
@@ -32,13 +32,20 @@ def preprocess(df=None, training=False):
                                                                     'L': 7, 'B': 8})
     cat_df['deposit_type'] = cat_df['deposit_type'].map({'No Deposit': 0, 'Refundable': 1, 'Non Refund': 3})
     cat_df['customer_type'] = cat_df['customer_type'].map({'Transient': 0, 'Contract': 1, 'Transient-Party': 2, 'Group': 3})
+
+    print(cat_df['year'], flush=True)
+    print((cat_df['year'] < 2015).any(), flush=True)
+    print((cat_df['year'] > 2017).any(), flush=True)
+
+    if (((cat_df['year'] < 2015).any()) or ((cat_df['year'] > 2017).any())):
+        raise Exception
     cat_df['year'] = cat_df['year'].map({2015: 0, 2014: 1, 2016: 2, 2017: 3})
-    
+
     cat_df.drop(['reservation_status_date'] , axis = 1, inplace = True)
 
     num_df = df.drop(columns = cat_cols, axis = 1)
-    if training:
-        num_df.drop('is_canceled', axis = 1, inplace = True)
+
+    num_df.drop('is_canceled', axis = 1, inplace = True)
 
     num_df['lead_time'] = np.log(num_df['lead_time'] + 1)
     num_df['arrival_date_week_number'] = np.log(num_df['arrival_date_week_number'] + 1)

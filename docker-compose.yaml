@@ -5,7 +5,7 @@ services:
         build: .
         image: hurbapp:latest
         ports:
-          - 6000:6000
+          - 8000:8000
         volumes:
           - '.:/app'
         command: "python3 app.py"

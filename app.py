@@ -7,7 +7,7 @@ from controllers.predict import predict
 app = Flask(__name__)
 
 @app.route('/')
-def test():
+def index():
     return Response("Hurb Technical Challenge API", status=200)
 
 @app.route('/model/fit')
@@ -19,4 +19,4 @@ def predict_model():
     return predict(request)
 
 if __name__ == '__main__':
-    app.run(debug=True, port=6000, host='0.0.0.0')
+    app.run(debug=True, port=8000, host='0.0.0.0')

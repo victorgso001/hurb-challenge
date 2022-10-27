@@ -19,7 +19,14 @@ def fit():
     params = {
         "iterations": 100,
     }
-    X_train, X_test, y_train, y_test = preprocess(training=True)
+    try:
+        X_train, X_test, y_train, y_test = preprocess(training=True)
+    except:
+        return Response(
+            "reservation_status_date not valid. Only valid with year between 2015 to 2017.",
+            status=400
+            )
+
     cat = CatBoostClassifier(iterations=100)
 
     cat.fit(X_train, y_train)
@@ -47,4 +54,4 @@ def fit():
 
     cat.save_model('/app/model/data/catboost')
 
-    return Response("Modelo treinado com sucesso!", status=200)
+    return Response("Model trained successfully!", status=200)
