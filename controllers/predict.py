@@ -3,7 +3,7 @@ from flask import Response, jsonify
 import pandas as pd
 import os
 
-from model.preprocess import preprocess
+from utils.preprocess import preprocess
 
 
 def predict(request):
@@ -11,7 +11,7 @@ def predict(request):
     data = pd.DataFrame([data])
     data_to_predict = preprocess(df=data)
 
-    if not (os.path.isfile('/app/model/data/model')):
+    if not (os.path.isfile('/app/model/data/catboost')):
         return Response('There is no model to perform prediction.', status=400)
 
     model = CatBoostClassifier()
