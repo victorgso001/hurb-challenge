@@ -7,6 +7,7 @@ from utils.preprocess import preprocess
 
 
 def predict(request):
+    """Predict Cancellation EDA based on JSON with the same columns as documented."""
     data = request.get_json()
     data = pd.DataFrame([data])
 

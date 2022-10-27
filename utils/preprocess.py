@@ -6,6 +6,7 @@ from flask import Response
 
 
 def preprocess(df=None, training=False):
+    """Preprocess data to fit and predict functions."""
     if training:
         df = pd.read_csv('/app/model/hotel_bookings.csv')
 
