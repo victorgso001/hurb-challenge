@@ -16,6 +16,7 @@ from sklearn.metrics import (
 
 
 def fit():
+    """Fit and save model, generating metrics for MLFlow model log."""
     params = {
         "iterations": 100,
     }
