@@ -32,6 +32,10 @@ def fit():
     f1 = f1_score(y_test, y_pred)
     auc = roc_auc_score(y_test, y_pred)
 
+    experiment_name = "Hurb Challenge"
+
+    mlflow.set_experiment(experiment_name=experiment_name)
+
     with mlflow.start_run() as run:
         mlflow.log_params(params)
         mlflow.catboost.log_model(cat, artifact_path="model")
