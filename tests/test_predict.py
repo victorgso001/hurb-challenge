@@ -3,7 +3,6 @@ from app import app
 
 
 test_json = {
-        "reservation_status_date": "10/27/2015",
         "hotel": "Resort Hotel",
         "meal": "SC",
         "market_segment": "Direct",
@@ -44,6 +43,7 @@ def client():
 
 
 def test_predict_valid_registry(client):
+    test_json.update({"reservation_status_date": "10/27/2015"})
     response = client.get('/model/predict', json=test_json)
     assert response.status_code == 200
 
