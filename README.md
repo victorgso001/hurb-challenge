@@ -4,7 +4,7 @@ This project was designed as a techincal challenge for Hurb data science team ap
 The model used was the CatBoost, trained based on [this notebook](https://www.kaggle.com/code/niteshyadav3103/hotel-booking-prediction-99-5-acc). The model was choosen by accuracy score evaluation available in the end of the notebook.
 
 # Important Note
-By the limitations in the dataset, classification will only work in the dates between 2015 to 2017.
+By the limitations in the dataset, classification will only work in the dates in `reservation_status_date` between 2014 to 2017. If an different date is informed, it will return an error with code 400.
 
 # Installation
 ## Prerequisites
@@ -17,7 +17,15 @@ By the limitations in the dataset, classification will only work in the dates be
 * Run `docker-compose up -d` to run the containers.
 
 # Usage
-This project was based on Flask API, with tree main routes to use. The api is available locally by the link `http://localhost:8000`.
+
+## Tests
+To run the available tests, you can use `docker exec -it hurb-challenge-app-1 pytest`
+
+## MLFlow
+Mlflow application for model metrics overview is available at `http://localhost:5000`.
+
+## API
+This project was based on Flask API, with tree main routes to use. The API is available locally by the link `http://localhost:8000`.
 
 ## Routes
 
@@ -36,7 +44,7 @@ This project was based on Flask API, with tree main routes to use. The api is av
 * Method: GET;
 * Inputs: JSON with dataset columns as keys and values as described in the article;
 * Outputs: JSON with prediction class;
-* Description: Model prediction route.
+* Description: Model prediction route. If no model was trained first, it returns an 400 error code.
 
 Input example:
 ```
