@@ -11,13 +11,8 @@ def predict(request):
     data = request.get_json()
     data = pd.DataFrame([data])
 
-    try:
-        data_to_predict = preprocess(df=data)
-    except:
-        return Response(
-            "reservation_status_date not valid. Only valid with year between 2014 to 2017.",
-            status=400
-            )
+    data_to_predict = preprocess(df=data)
+
 
     if not (os.path.isfile('/app/model/catboost')):
         return Response('There is no model to perform prediction on.', status=400)
