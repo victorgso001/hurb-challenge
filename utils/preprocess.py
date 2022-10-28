@@ -3,6 +3,7 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn import preprocessing
 from flask import Response
+from utils.years_available import years
 
 
 def preprocess(df=None, training=False):
@@ -34,9 +35,7 @@ def preprocess(df=None, training=False):
     cat_df['deposit_type'] = cat_df['deposit_type'].map({'No Deposit': 0, 'Refundable': 1, 'Non Refund': 3})
     cat_df['customer_type'] = cat_df['customer_type'].map({'Transient': 0, 'Contract': 1, 'Transient-Party': 2, 'Group': 3})
 
-    if (((cat_df['year'] < 2014).any()) or ((cat_df['year'] > 2017).any())):
-        raise Exception
-    cat_df['year'] = cat_df['year'].map({2015: 0, 2014: 1, 2016: 2, 2017: 3})
+    cat_df['year'] = cat_df['year'].map(years)
 
     cat_df.drop(['reservation_status_date'] , axis = 1, inplace = True)
 

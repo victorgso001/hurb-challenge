@@ -20,13 +20,9 @@ def fit():
     params = {
         "iterations": 100,
     }
-    try:
-        X_train, X_test, y_train, y_test = preprocess(training=True)
-    except:
-        return Response(
-            "reservation_status_date not valid. Only valid with year between 2014 to 2017.",
-            status=400
-            )
+
+    X_train, X_test, y_train, y_test = preprocess(training=True)
+
 
     cat = CatBoostClassifier(iterations=100)
 

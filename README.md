@@ -1,10 +1,7 @@
 # hurb-challenge
 
-This project was designed as a techincal challenge for Hurb data science team appreciation. It is based on the Hotel Booking Prediction Kaggle notebook, which uses data available [in this link](https://storage.googleapis.com/dsc-public-info/general/jobs_challenges/machine_learning/entry_level/datasets/hotel_bookings.csv), as part of the [Hotel Booking Demand Datasets](https://www.sciencedirect.com/science/article/pii/S2352340918315191).
-The model used was the CatBoost, trained based on [this notebook](https://www.kaggle.com/code/niteshyadav3103/hotel-booking-prediction-99-5-acc). The model was choosen by accuracy score evaluation available in the end of the notebook.
-
-# Important Note
-By the limitations in the dataset, classification will only work in the dates in `reservation_status_date` between 2014 to 2017. If an different date is informed, it will return an error with code 400.
+This project was designed as a techincal challenge for Hurb data science team appreciation. It is based on the Hotel Booking Prediction Kaggle notebook, which uses data available [in this link](https://storage.googleapis.com/dsc-public-info/general/jobs_challenges/machine_learning/entry_level/datasets/hotel_bookings.csv), as part of the [Hotel Booking Demand Datasets](https://www.sciencedirect.com/science/article/pii/S2352340918315191), and aims to classify if, given a booking data information, it will be canceled (1) or not(0).
+The model used was the CatBoost, trained based on the project's description notebook, available [here](https://www.kaggle.com/code/niteshyadav3103/hotel-booking-prediction-99-5-acc). The model was choosen by accuracy score evaluation available in the end of the notebook.
 
 # Installation
 ## Prerequisites
@@ -22,7 +19,7 @@ By the limitations in the dataset, classification will only work in the dates in
 To run the available tests, you can use `docker exec -it hurb-challenge-app-1 pytest`
 
 ## MLFlow
-Mlflow application for model metrics overview is available at `http://localhost:5000`.
+Mlflow application for model metrics overview is available at `http://localhost:5000`. For proper working, model training needs to be done before acessing MLFlow, by the available route given below.
 
 ## API
 This project was based on Flask API, with tree main routes to use. The API is available locally by the link `http://localhost:8000`.

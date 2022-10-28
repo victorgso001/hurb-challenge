@@ -46,17 +46,3 @@ def client():
 def test_predict_valid_registry(client):
     response = client.get('/model/predict', json=test_json)
     assert response.status_code == 200
-
-
-def test_predict_reservation_status_date_before_2014(client):
-    test_json.update({"reservation_status_date": "10/27/2013"})
-    response = client.get('/model/predict', json=test_json)
-    print(response.status_code, flush=True)
-    assert response.status_code == 400
-
-
-def test_predict_reservation_status_date_after_2017(client):
-    test_json.update({"reservation_status_date": "10/27/2018"})
-    response = client.get('/model/predict', json=test_json)
-    print(response.status_code, flush=True)
-    assert response.status_code == 400
