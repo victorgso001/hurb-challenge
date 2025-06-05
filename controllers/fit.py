@@ -36,7 +36,7 @@ def fit():
     f1 = f1_score(y_test, y_pred)
     auc = roc_auc_score(y_test, y_pred)
 
-    experiment_name = "Hurb Challenge"
+    experiment_name = "MLOps Challenge"
 
     mlflow.set_experiment(experiment_name=experiment_name)
 

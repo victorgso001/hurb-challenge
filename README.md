@@ -29,7 +29,7 @@ This project was based on Flask API, with tree main routes to use. The API is av
 ### ´/´
 * Method: GET;
 * Inputs: None;
-* Outputs: Text "Hurb Technical Challenge API"
+* Outputs: Text "MLOps Technical Challenge API"
 
 ### ´/model/fit´
 * Method: GET;

@@ -6,7 +6,7 @@ from app import app
 
 @app.route('/')
 def index():
-    return Response("Hurb Technical Challenge API", status=200)
+    return Response("MLOps Technical Challenge API", status=200)
 
 @app.route('/model/fit')
 def fit_model():
