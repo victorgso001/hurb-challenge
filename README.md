@@ -1,6 +1,6 @@
-# hurb-challenge
+# MLOps-challenge
 
-This project was designed as a techincal challenge for Hurb data science team appreciation. It is based on the Hotel Booking Prediction Kaggle notebook, which uses data available [in this link](https://storage.googleapis.com/dsc-public-info/general/jobs_challenges/machine_learning/entry_level/datasets/hotel_bookings.csv), as part of the [Hotel Booking Demand Datasets](https://www.sciencedirect.com/science/article/pii/S2352340918315191), and aims to classify if, given a booking data information, it will be canceled (1) or not(0).
+This project was designed as a techincal challenge for data science team appreciation. It is based on the Hotel Booking Prediction Kaggle notebook, which uses data available [in this link](https://www.kaggle.com/datasets/jessemostipak/hotel-booking-demand?resource=download), as part of the [Hotel Booking Demand Datasets](https://www.sciencedirect.com/science/article/pii/S2352340918315191), and aims to classify if, given a booking data information, it will be canceled (1) or not(0).
 The model used was the CatBoost, trained based on the project's description notebook, available [here](https://www.kaggle.com/code/niteshyadav3103/hotel-booking-prediction-99-5-acc). The model was choosen by accuracy score evaluation available in the end of the notebook.
 
 # Installation
@@ -10,13 +10,13 @@ The model used was the CatBoost, trained based on the project's description note
 ## Installation steps
 * Clone the repository;
 * Create a folder named model on project's root folder;
-* Download the .csv dataset [here](https://storage.googleapis.com/dsc-public-info/general/jobs_challenges/machine_learning/entry_level/datasets/hotel_bookings.csv) and paste it inside model folder;
+* Download the .csv dataset [here](https://www.kaggle.com/datasets/jessemostipak/hotel-booking-demand?resource=download) and paste it inside model folder;
 * Run `docker-compose up -d` to run the containers.
 
 # Usage
 
 ## Tests
-To run the available tests, you can use `docker exec -it hurb-challenge-app-1 pytest`
+To run the available tests, you can use `docker exec -it mlops-challenge-app-1 pytest`
 
 ## MLFlow
 Mlflow application for model metrics overview is available at `http://localhost:5000`. For proper working, model training needs to be done before acessing MLFlow, by the available route given below.
