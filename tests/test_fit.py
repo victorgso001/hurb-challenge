@@ -8,5 +8,5 @@ def client():
 
 
 def test_fit(client):
-    response = client.get('/model/fit')
+    response = client.get("/model/fit")
     assert response.status_code == 200

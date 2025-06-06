@@ -1,6 +1,3 @@
-import pandas as pd
-import numpy as np
-
 import mlflow
 from flask import Response
 from catboost import CatBoostClassifier
@@ -23,7 +20,6 @@ def fit():
 
     X_train, X_test, y_train, y_test = preprocess(training=True)
 
-
     cat = CatBoostClassifier(iterations=100)
 
     cat.fit(X_train, y_train)
@@ -40,7 +36,7 @@ def fit():
 
     mlflow.set_experiment(experiment_name=experiment_name)
 
-    with mlflow.start_run() as run:
+    with mlflow.start_run():
         mlflow.log_params(params)
         mlflow.catboost.log_model(cat, artifact_path="model")
         mlflow.log_metric("accuracy", acc_cat)
@@ -49,6 +45,6 @@ def fit():
         mlflow.log_metric("f1_score", f1)
         mlflow.log_metric("area_under_roc_curve", auc)
 
-    cat.save_model('/app/model/catboost')
+    cat.save_model("/app/model/catboost")
 
     return Response("Model trained successfully!", status=200)
